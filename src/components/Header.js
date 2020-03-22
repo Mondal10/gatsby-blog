@@ -1,14 +1,24 @@
 import React from 'react';
-import { Link } from 'gatsby';
+import { Link, graphql, useStaticQuery } from 'gatsby';
 
 // Converts the '-' seperated class to camelCase class automatically 
 import { header, title, navList, navItem, activeNavItem } from '../styles/modules/header.module.scss';
 
 const Header = () => {
+    const headerData = useStaticQuery(graphql`
+       query {
+           site {
+               siteMetadata {
+                   title
+               }
+           }
+       }
+    `);
+
     return (
         <header className={header}>
             <h1>
-                <Link className={title} to="/">Amit Mondal</Link>
+                <Link className={title} to="/">{headerData.site.siteMetadata.title}</Link>
             </h1>
             <nav>
                 <ul className={navList}>
