@@ -11,6 +11,15 @@ module.exports = {
     author: 'Amit Mondal'
   },
   plugins: [
-    `gatsby-plugin-sass`
+    `gatsby-plugin-sass`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `posts`,
+        path: `${__dirname}\\src\\posts\\`, // For windows path
+        // path: `${__dirname}/src/posts/`, // For Mac/Linux path
+        ignore: [`**/\.*`], // ignore files starting with a dot
+      },
+    },
   ],
 }
