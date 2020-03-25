@@ -17,3 +17,32 @@ module.exports.onCreateNode = ({ node, actions }) => {
         });
     }
 }
+
+module.exports.createPages = async ({ graphql, actions }) => {
+    const { createPage } = actions;
+    const blogTemplate = path.resolve('./src/templates/blog.js');
+    const response = await graphql(`
+        query {
+          allMarkdownRemark {
+            edges {
+              node {
+                fields {
+                  slug
+                }
+              }
+            }
+          }
+        }
+    `);
+
+    response.data.allMarkdownRemark.edges.forEach(edge => {
+        const { slug } = edge.node.fields;
+        createPage({
+            component: blogTemplate,
+            path: `/blog/${slug}`,
+            context: {
+                slug
+            }
+        });
+    });
+}
