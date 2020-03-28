@@ -16,6 +16,8 @@ const AboutPage = () => {
             <p>I am a Fullstack Developer</p>
             <p>Love to make and break {code}</p>
             <p>Want to get in <Link to="/contact">contact</Link></p>
+            <br />
+            <small>Open the console to see something amazing. Press <kbd>F12</kbd></small>
         </Layout>
     );
 };
