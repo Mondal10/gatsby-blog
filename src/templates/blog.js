@@ -39,6 +39,14 @@ const Blog = (props) => {
   )
 };
 
+/**
+ * Conditionally render page based on the contents which can come
+ * either from Contentful CMS or normal Markdown
+ * 
+ * @param {Object} props TemplateQuery through grahql above
+ * 
+ * @return {JSX} Elements to render on screen
+ */
 const renderBlogPost = ({ data }) => {
   const { markdownRemark, contentfulBlogPost } = data;
 
