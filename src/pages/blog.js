@@ -43,6 +43,7 @@ const BlogPage = () => {
             <h1>Blog</h1>
             <p>All Posts goes here</p>
             <ol className={posts}>
+                {/* All Markdown posts */}
                 {
                     blogPosts.allMarkdownRemark.edges.map(({ node }, i) => {
                         return (
@@ -55,6 +56,7 @@ const BlogPage = () => {
                         );
                     })
                 }
+                {/* All Contentful CMS posts */}
                 {
                     blogPosts.allContentfulBlogPost.edges.map(({ node }, i) => {
                         return (
