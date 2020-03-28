@@ -5,8 +5,18 @@
   </a>
 </p>
 <h1 align="center">
-  Gatsby's hello-world starter
+  <a href="https://elated-hodgkin-8b8d06.netlify.com/"> Gatsby Blog </a>
 </h1>
+
+Learning and implementing Gatsby.
+
+<a href="https://elated-hodgkin-8b8d06.netlify.com/">Link to Blog</a>
+
+<a href="https://www.netlify.com/"> Hosted on Netlify </a>
+
+**Note:** This is just for learning purpose, all the blogs inside are currently dummty blog posts.
+
+<hr>
 
 Kick off your project with this hello-world boilerplate. This starter ships with the main Gatsby configuration files you might need to get up and running blazing fast with the blazing fast app generator for React.
 
