@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import Layout from '../components/Layout';
 
@@ -26,7 +27,10 @@ export const templateQuery = graphql`
         }
       ){
         title,
-        published(formatString: "Do MMMM, YYYY")
+        published(formatString: "Do MMMM, YYYY"),
+        body {
+          json
+        }
       }
     }
 `;
@@ -70,12 +74,41 @@ const renderBlogPost = ({ data }) => {
   } else if (contentfulBlogPost) {
     /* All Contentful CMS posts */
 
-    const { title, published } = contentfulBlogPost;
+    // Nested Destructuring `props.data.contentfulBlogPost`
+    // And Renaming body.json to contentfulJSON and using it.
+    const {
+      title,
+      published,
+      body: { json: contentfulJSON }
+    } = contentfulBlogPost;
+
+    // To render Images from Contentful CMS
+    const options = {
+      renderNode: {
+        // Node type is visible in graphql playground as `nodeType`
+        "embedded-asset-block": (node) => {
+          // We need node.data.target.fields for alt and url of image
+          if (node.data.target.fields) {
+            const { title, file } = node.data.target.fields;
+
+            const alt = title['en-US'];
+            const { url } = file['en-US'];
+
+            return <img alt={alt} src={url} />
+          }
+
+          console.log('%cEither there is no image in contentful for this post, or something is broken while requesting image', 'color: salmon;');
+          return null;
+        }
+      }
+    };
 
     return (
       <React.Fragment>
         <h1>{title}</h1>
         <p>{published}</p>
+        {/* To convert json data of contentful to react component */}
+        {documentToReactComponents(contentfulJSON, options)}
       </React.Fragment>
     );
   } else {
