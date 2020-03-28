@@ -30,12 +30,12 @@ const BlogPage = () => {
                 {
                     blogPosts.allMarkdownRemark.edges.map(({ node }, i) => {
                         return (
-                            <Link to={`/blog/${node.fields.slug}`}>
-                                <li key={i}>
+                            <li key={i}>
+                                <Link to={`/blog/${node.fields.slug}`}>
                                     <h2>{node.frontmatter.title}</h2>
                                     <p>{node.frontmatter.date}</p>
-                                </li>
-                            </Link>
+                                </Link>
+                            </li>
                         );
                     })
                 }
