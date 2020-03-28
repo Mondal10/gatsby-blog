@@ -8,6 +8,7 @@ import { posts, post } from '../styles/modules/blog.module.scss';
 const BlogPage = () => {
     const blogPosts = useStaticQuery(graphql`
         query {
+            # Query for allMarkdownRemark
             allMarkdownRemark {
                 edges {
                     node {
@@ -21,6 +22,7 @@ const BlogPage = () => {
                     }
                 }
             },
+            # Query for allContentfulBlogPost
             allContentfulBlogPost (
                 sort: {
                     fields : published,

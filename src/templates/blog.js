@@ -5,6 +5,7 @@ import Layout from '../components/Layout';
 
 export const templateQuery = graphql`
     query ($slug: String!){
+      # Query for markdownRemark
       markdownRemark(
         fields:{
           slug:{
@@ -18,6 +19,7 @@ export const templateQuery = graphql`
         }
         html
       },
+      # Query for contentfulBlogPost
       contentfulBlogPost(
         slug: {
           eq: $slug
