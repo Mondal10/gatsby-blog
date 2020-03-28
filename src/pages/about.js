@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'gatsby';
 
 import Layout from '../components/Layout';
+import DocumentHead from '../components/DocumentHead';
 
 const AboutPage = () => {
     const code = "</CODE>";
@@ -10,6 +11,7 @@ const AboutPage = () => {
 
     return (
         <Layout>
+            <DocumentHead title="About" />
             <h1>About Me</h1>
             <p>I am a Fullstack Developer</p>
             <p>Love to make and break {code}</p>

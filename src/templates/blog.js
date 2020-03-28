@@ -3,6 +3,7 @@ import { graphql } from 'gatsby';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 import Layout from '../components/Layout';
+import DocumentHead from '../components/DocumentHead';
 
 export const templateQuery = graphql`
     query ($slug: String!){
@@ -65,6 +66,7 @@ const renderBlogPost = ({ data }) => {
 
     return (
       <React.Fragment>
+        <DocumentHead title={title} />
         <h1>{title}</h1>
         <p>{date}</p>
         {/* dangerouslySetInnerHTML: https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml */}
@@ -105,6 +107,7 @@ const renderBlogPost = ({ data }) => {
 
     return (
       <React.Fragment>
+        <DocumentHead title={title} />
         <h1>{title}</h1>
         <p>{published}</p>
         {/* To convert json data of contentful to react component */}
