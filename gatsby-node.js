@@ -25,18 +25,38 @@ module.exports.createPages = async ({ graphql, actions }) => {
         query {
           allMarkdownRemark {
             edges {
-              node {
-                fields {
-                  slug
+                node {
+                    fields {
+                        slug
+                    }
                 }
-              }
+            }
+          },
+          allContentfulBlogPost {
+            edges {
+                node{
+                    slug
+                }
             }
           }
         }
     `);
 
+    /* All Markdown posts */
     response.data.allMarkdownRemark.edges.forEach(edge => {
         const { slug } = edge.node.fields;
+        createPage({
+            component: blogTemplate,
+            path: `/blog/${slug}`,
+            context: {
+                slug
+            }
+        });
+    });
+
+    /* All Contentful CMS posts*/
+    response.data.allContentfulBlogPost.edges.forEach(edge => {
+        const { slug } = edge.node;
         createPage({
             component: blogTemplate,
             path: `/blog/${slug}`,
