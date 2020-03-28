@@ -20,6 +20,20 @@ const BlogPage = () => {
                         }
                     }
                 }
+            },
+            allContentfulBlogPost (
+                sort: {
+                    fields : published,
+                    order: DESC
+                }
+            ) {
+                edges {
+                    node {
+                        title,
+                        slug,
+                        published (formatString: "Do MMMM, YYYY")
+                    }
+                }
             }
         }
     `);
@@ -36,6 +50,18 @@ const BlogPage = () => {
                                 <Link to={`/blog/${node.fields.slug}`}>
                                     <h2>{node.frontmatter.title}</h2>
                                     <p>{node.frontmatter.date}</p>
+                                </Link>
+                            </li>
+                        );
+                    })
+                }
+                {
+                    blogPosts.allContentfulBlogPost.edges.map(({ node }, i) => {
+                        return (
+                            <li className={post} key={i}>
+                                <Link to={`/blog/${node.slug}`}>
+                                    <h2>{node.title}</h2>
+                                    <p>{node.published}</p>
                                 </Link>
                             </li>
                         );
